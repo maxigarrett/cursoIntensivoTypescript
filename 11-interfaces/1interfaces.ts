@@ -1,5 +1,8 @@
 //las INTERFACES son similares a los TYPES pero con unas ligeras diferencias por ejemplo se pueden instanciar
-//y es mejor antes de hacer uniontypes
+//y es mejor antes de hacer uniontypes. tambien no se pueden usar tipos primitivos cono en las tuplas, para eso  si o si
+//ahy que utilizar types, las interfaces es para definir una estructura mas compleja.
+
+type CodigoId = `${number}-${string}`; //si declaramos una interface dara error porque pedira crear un obj
 
 //un alias de tipos(typealias) no se puede volver a abrir para agregar nuevas propiedades, mientras que una interfaz siempre
 // es extensible. ademas que no se usa el = para declararlas
