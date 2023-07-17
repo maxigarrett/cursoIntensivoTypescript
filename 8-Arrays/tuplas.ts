@@ -27,5 +27,9 @@ const gameboard: GameBoard = [
 // gameboard[0][1]='asdasd' esto dara error tambien solo acepta 'x','o',''
 
 //para hacer un color rgb
-type RGB = [number, number, number];
+//pero typescript tiene un bug que si a esta tupla le hacemos un push nos dejara que sea de 4 y no de 3
+//por eso vamos a ponerle redonly asy no se puede modificar
+type RGB = readonly [number, number, number];
 const black: RGB = [0, 0, 0];
+
+// black.push(4)esto dara error ya que el typo es de solo lectura

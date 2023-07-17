@@ -12,7 +12,7 @@ type HeroPoweScale =
 const AnimationDuration: boolean | number = 200;
 
 type Heros4 = {
-  readonly id?: HeroId;
+  readonly id?: HeroId1;
   name: string;
   age: number;
   isActive?: boolean;
