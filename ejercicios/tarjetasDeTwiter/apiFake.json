@@ -2,14 +2,21 @@
   "subsFake": [
     {
       "nick": "pepe",
-      "subMonth": 10,
-      "avatar": "https://i.pravatar.cc/150?u=pepe",
-      "description": "moderador"
+      "months": 24,
+      "profileUrl": "https://i.pravatar.cc/150?u=pepe",
+      "description": "pepe is a mid senior fron dev"
     },
     {
       "nick": "sergio",
-      "subMonth": 7,
-      "avatar": "https://i.pravatar.cc/150?u=sergio"
+      "months": 0,
+      "profileUrl": "https://i.pravatar.cc/150?u=sergio",
+      "description": "sergio is a junior fron dev"
+    },
+    {
+      "nick": "maxi",
+      "months": 3,
+      "profileUrl": "https://i.pravatar.cc/150?u=maxi",
+      "description": "maxi is a junior fron dev"
     }
   ]
 }

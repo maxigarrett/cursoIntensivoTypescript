@@ -1,47 +1,9 @@
-import { useState, useReducer } from "react";
 import { Sub } from "../types";
-
-//como puede haber varios estados creamos un interface con ese proposito
-interface FormState {
-  inputValues: Sub;
-}
+import { useNewSubForm } from "../hooks/useNewSubForm";
 
 interface FormProps {
   onNewSub: (newSub: Sub) => void;
 }
-
-const INITIAL_STATE = {
-  nick: "",
-  subMonth: 0,
-  avatar: "",
-  description: "",
-};
-
-//-------------------REDUCER
-type FormReducerAction =
-  | {
-      type: "change_value";
-      payload: {
-        inputName: string;
-        inputValue: string;
-      };
-    }
-  | { type: "clear" };
-
-const formReducer = (
-  state: FormState["inputValues"],
-  action: FormReducerAction
-) => {
-  switch (action.type) {
-    case "change_value":
-      const { inputName, inputValue } = action.payload;
-      return { ...state, [inputName]: inputValue };
-
-    case "clear":
-      return INITIAL_STATE;
-  }
-};
-//------------------fin REDUCER
 
 export const Form = ({ onNewSub }: FormProps) => {
   //esto es sin reducer
@@ -49,7 +11,8 @@ export const Form = ({ onNewSub }: FormProps) => {
    useState<FormState["inputValues"]>(INITIAL_STATE);
   */
 
-  const [inputValues, dispatch] = useReducer(formReducer, INITIAL_STATE);
+  //HOOK en donde utilizamos useReducer
+  const [inputValues, dispatch] = useNewSubForm();
 
   //para saber el evento de que tipo es hay que hacer hover en el onsubmit y te dira la propiedad
   //React.FormEventHandler<HTMLFormElement> y le sacamos el nombre handler

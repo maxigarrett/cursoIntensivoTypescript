@@ -5,6 +5,7 @@ interface Props {
 
 export const List = (props: Props): JSX.Element => {
   const { subs } = props;
+  if (!subs) return <h1>loading</h1>;
   return (
     <ul>
       {subs.map((sub) => {
