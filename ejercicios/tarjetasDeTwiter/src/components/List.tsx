@@ -1,10 +1,6 @@
+import { Sub } from "../types";
 interface Props {
-  subs: Array<{
-    nick: string;
-    subMonth: number;
-    avatar: string;
-    description?: string;
-  }>;
+  subs: Array<Sub>;
 }
 
 export const List = (props: Props): JSX.Element => {

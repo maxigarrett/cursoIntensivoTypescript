@@ -2,33 +2,14 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import { List } from "./components/List";
 import { Form } from "./components/Form";
-
-interface Sub {
-  nick: string;
-  subMonth: number;
-  avatar: string;
-  description?: string;
-}
-
-//es probable que tengamos varios estados por eso es mejor crear una interfaz que controle eso
+import { Sub } from "./types";
+import { subsFake } from "../apiFake.json";
+// es probable que tengamos varios estados por eso es mejor crear una interfaz que controle eso
 interface AppState {
   subs: Sub[];
   newSubsNumber: number;
 }
 
-const INITIAL_STATE = [
-  {
-    nick: "pepe",
-    subMonth: 10,
-    avatar: "https://i.pravatar.cc/150?u=pepe",
-    description: "moderador",
-  },
-  {
-    nick: "sergio",
-    subMonth: 7,
-    avatar: "https://i.pravatar.cc/150?u=sergio",
-  },
-];
 function App() {
   // const [number, setnumber] = useState<number|string>(0);podemos asiganr de esta forma los prmitivos
 
@@ -38,14 +19,18 @@ function App() {
     useState<AppState["newSubsNumber"]>(0);
 
   useEffect(() => {
-    setSubs(INITIAL_STATE);
+    setSubs(subsFake); //viene un de un json falso que creamos
   }, []);
 
+  const handleNewSub = (newSub: Sub): void => {
+    console.log(newSub);
+    setSubs((sub) => [...sub, newSub]);
+  };
   return (
     <div className="App">
       <h1>subs</h1>
       <List subs={subs} />
-      <Form />
+      <Form onNewSub={handleNewSub} />
     </div>
   );
 }
