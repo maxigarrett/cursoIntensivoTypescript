@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Todos } from "./component/Todos";
+import { type TodoId, type Todo as TodoTypes } from "./types";
 
 const mockTodos = [
   {
@@ -21,16 +22,37 @@ const mockTodos = [
 const App: React.FC = () => {
   const [todos, setTodos] = useState(mockTodos);
 
-  const hadleCheckInput = () => {};
+  const hadleCheckInput = ({
+    id,
+    completed,
+  }: Pick<TodoTypes, "id" | "completed">): void => {
+    const newTodoitemChecked = todos.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: completed,
+        };
+      }
+      return todo;
+    });
+    setTodos(newTodoitemChecked);
+  };
 
-  const handleRemove = (id: string): void => {
+  // dos formas de pasarle los parametro a la funcion "({ id }: TodoId)" o "(id: TypeId['id'])"
+  //tendriamos que pasarlos de esas dos formas en todos los lugares donde utilicemos la funcion para no dar error
+  //"({ id }: TodoId)" se denomina parametros nombrados
+  const handleRemove = ({ id }: TodoId): void => {
     const newTodoFiltered = todos.filter((todo) => todo.id !== id);
     setTodos(newTodoFiltered);
   };
 
   return (
     <div className="todoapp">
-      <Todos todos={todos} onRemoveTodo={handleRemove} />
+      <Todos
+        todos={todos}
+        onRemoveTodo={handleRemove}
+        onToggleCompleted={hadleCheckInput}
+      />
     </div>
   );
 };

@@ -1,12 +1,21 @@
-import { type Todo as TodoTypes } from "../types"; //le cambiamos el nombre porque colisiona con el nombre del componente Todo
+//le cambiamos el nombre porque colisiona con el nombre del componente 'Todo'
+import { type TodoId, type Todo as TodoTypes } from "../types";
 import { Todo } from "./Todo";
 
 interface Props {
   todos: Array<TodoTypes>;
-  onRemoveTodo: (id: string) => void;
+  onRemoveTodo: ({ id }: TodoId) => void;
+  onToggleCompleted: ({
+    id,
+    completed,
+  }: Pick<TodoTypes, "id" | "completed">) => void;
 }
 //forma de pasarle Tipos a una funcion e indicarle las props que va a recibir con typescript
-export const Todos: React.FC<Props> = ({ todos, onRemoveTodo }) => {
+export const Todos: React.FC<Props> = ({
+  todos,
+  onRemoveTodo,
+  onToggleCompleted,
+}) => {
   return (
     <ul className="todo-list">
       {todos.map((todo) => {
@@ -17,6 +26,7 @@ export const Todos: React.FC<Props> = ({ todos, onRemoveTodo }) => {
               completed={todo.completed}
               title={todo.title}
               onRemoveTodo={onRemoveTodo}
+              onToggleCompleted={onToggleCompleted}
             />
           </li>
         );
