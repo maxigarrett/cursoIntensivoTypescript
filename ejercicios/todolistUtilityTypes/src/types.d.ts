@@ -1,3 +1,5 @@
+import { TODO_FILTERS } from "./const";
+
 export interface Todo {
   id: string;
   title: string;
@@ -6,3 +8,6 @@ export interface Todo {
 
 //UTILITY TYPES
 export type TodoId = Pick<Todo, "id">;
+
+//extraemos el valor de las key y la tranformamos en tipos
+export type FiltersValues = (typeof TODO_FILTERS)[keyof typeof TODO_FILTERS];

@@ -17,7 +17,7 @@ export const Todos: React.FC<Props> = ({
   onToggleCompleted,
 }) => {
   return (
-    <ul className="todo-list">
+    <ul className="todo-list" style={{ minHeight: "200px" }}>
       {todos.map((todo) => {
         return (
           <li key={todo.id} className={`${todo.completed ? "completed" : ""}`}>
