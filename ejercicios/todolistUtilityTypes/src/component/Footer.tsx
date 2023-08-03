@@ -25,7 +25,13 @@ export const Footer: React.FC<Props> = ({
 
         <button
           onClick={() => onClearCompleted()}
-          style={{ cursor: "pointer" }}
+          style={{
+            cursor: "pointer",
+            width: "100%",
+            height: "40px",
+            backgroundColor: "#FF085F",
+            fontWeight: "700",
+          }}
         >
           borrar completados
         </button>

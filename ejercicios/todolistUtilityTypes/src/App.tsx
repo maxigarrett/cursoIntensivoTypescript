@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { Todos } from "./component/Todos";
-import { FiltersValues, type TodoId, type Todo as TodoTypes } from "./types";
+import {
+  FiltersValues,
+  TodoTitle,
+  type TodoId,
+  type Todo as TodoTypes,
+} from "./types";
 import { Footer } from "./component/Footer";
 import { TODO_FILTERS } from "./const";
+import { HeaderForm } from "./component/HeaderForm";
 
 const mockTodos = [
   {
@@ -71,8 +77,22 @@ const App: React.FC = () => {
     if (filterSelected === TODO_FILTERS.ACTIVE) return todo.completed === false;
     if (filterSelected === TODO_FILTERS.COMPLETED) return todo.completed;
   });
+
+  //AGREGAMOS NUEVOS TODO
+  const addTodo = (todo: TodoTitle) => {
+    const ramdomID = crypto.randomUUID().split("-").slice(-1).toString();
+    const newTodo = {
+      id: ramdomID,
+      title: `${todo.title}`,
+      completed: false,
+    };
+    const newListTodo = [...todos, newTodo];
+    setTodos(newListTodo);
+  };
+
   return (
     <div className="todoapp">
+      <HeaderForm addTodo={addTodo} />
       <Todos
         todos={filtersTodos}
         onRemoveTodo={handleRemove}
