@@ -1,0 +1,14 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+tbody {
+  text-align: center;
+}

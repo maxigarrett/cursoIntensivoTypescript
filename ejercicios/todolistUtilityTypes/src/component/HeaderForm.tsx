@@ -35,7 +35,7 @@ export const HeaderForm: React.FC<Props> = ({ addTodo }) => {
             style={{
               width: "100%",
               height: "40px",
-              backgroundColor: "#4DF600",
+              cursor: "pointer",
               fontWeight: "700",
             }}
           >
