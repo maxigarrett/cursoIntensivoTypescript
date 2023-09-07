@@ -28,7 +28,21 @@ function App() {
     setSortByCountry((sortByCountry) => !sortByCountry);
   };
 
-  //si no hacemos un copia del erstado quedara ordenado y no lo desordenara, solo lo ara una vez
+  //FILTRO POR PAISES
+  const filterContry = (country: string) => {
+    setFilterUserCountry(country);
+  };
+
+  const filteredUserByCountry = filterUserCountry
+    ? users.filter((user) => {
+        user.location.country
+          .toLocaleLowerCase()
+          .includes(filterUserCountry.toLowerCase());
+      })
+    : users;
+  //FIN FILTRO POR PAISES
+
+  //si no hacemos un copia del estado quedara ordenado y no lo desordenara, solo lo ara una vez
   //porque sort muta el estado original
   //otra forma de usar algo parecido al [...users] podemos usar:
   //cambiamos el metodo 'sorted' por 'toSorted' asi no usamos el spreed operator
