@@ -31,15 +31,17 @@ function App() {
   //FILTRO POR PAISES
   const filterContry = (country: string) => {
     setFilterUserCountry(country);
+    console.log(filterUserCountry);
   };
 
   const filteredUserByCountry = filterUserCountry
     ? users.filter((user) => {
-        user.location.country
-          .toLocaleLowerCase()
+        return user.location.country
+          .toLowerCase()
           .includes(filterUserCountry.toLowerCase());
       })
     : users;
+
   //FIN FILTRO POR PAISES
 
   //si no hacemos un copia del estado quedara ordenado y no lo desordenara, solo lo ara una vez
@@ -47,10 +49,10 @@ function App() {
   //otra forma de usar algo parecido al [...users] podemos usar:
   //cambiamos el metodo 'sorted' por 'toSorted' asi no usamos el spreed operator
   const sortedUser = sortByCountry
-    ? [...users].sort((a, b) => {
+    ? [...filteredUserByCountry].sort((a, b) => {
         return a.location.country.localeCompare(b.location.country);
       })
-    : users;
+    : filteredUserByCountry;
 
   const deleteUserForEmail = (email: string): void => {
     const userFiltered = users.filter((user) => user.email !== email);
@@ -78,6 +80,7 @@ function App() {
           toggleSortByCountry={toggleSortByCountry}
           handleResetUser={handleResetUser}
           sortByCountry={sortByCountry}
+          filterContry={filterContry}
         />
       </header>
       <main>
